@@ -6,6 +6,8 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const sessionStore = new session.MemoryStore();
+
 /* 
     @param: secret: a secret that is used to sign the session ID
     @param: resave: forces session to be saved back to store
@@ -14,6 +16,7 @@ app.use(express.json());
 */
 app.use(
   session({
+    store: sessionStore,
     secret: 'some awesome secret',
     resave: false,
     saveUninitialized: true,
@@ -41,6 +44,12 @@ if (app.get('env') === 'production') {
     Else add user (using sessionID as an example) and set page views to 1
 */
 app.get('/', function (req, res) {
+  // Log all current sessions (for fun)
+  sessionStore.all(function (error, sessions) {
+    sessions = JSON.parse(JSON.stringify(sessions));
+    console.log(sessions);
+  });
+
   if (req.session.views) {
     req.session.views++;
     res.setHeader('Content-Type', 'text/html');

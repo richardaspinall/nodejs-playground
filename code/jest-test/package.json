@@ -1,0 +1,20 @@
+{
+  "name": "jest-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "*",
+    "express": "*",
+    "supertest": "^6.1.4"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
+}

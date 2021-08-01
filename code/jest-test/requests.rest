@@ -1,0 +1,8 @@
+POST https://localhost.com/users HTTP/1.1
+content-type: application/json
+
+{
+    "username": "jdoe",
+    "firstname": "jane",
+    "lastname": "doe"
+}

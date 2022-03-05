@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>Welcome to <%= title %>
+  </p>
+  <button id="fold">Fold</button>
+  <button id="call">Call</button>
+</body>
+
+</html>
+
+<script src='/assets/vendor/jquery/jquery.min.js'></script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  $(document).ready(function () {
+    var socket = io('/');
+    socket.on('connect', (data) => {
+      console.log('socketio connection on /')
+    });
+    $("#fold").click(() => {
+      socket.emit('fold');
+    })
+    socket.on('user-folds', (event) => {
+      console.log(`${event.user} folds`)
+      console.log(event.game)
+    })
+
+    socket.on('auto-fold', (event) => {
+      console.log(`${event.user} auto folds`)
+    })
+  })
+</script>

@@ -1,0 +1,14 @@
+{
+  "autorun": true,
+  "terminals": [
+    {
+      "name": "Single",
+      "description": "This is a description",
+      "focus": true
+    },
+    {
+      "name": "Multi",
+      "commands": ["ls -a"]
+    }
+  ]
+}
